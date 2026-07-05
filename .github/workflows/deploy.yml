@@ -58,7 +58,7 @@ jobs:
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
             "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}" \
             'set -e; \
-             cd /var/www/production/MoMo_Server/backend
+             cd /var/www/production/MoMo_Survey; \
              git pull --ff-only; \
              cd backend && /usr/local/bin/npm ci --omit=dev; \
              sudo /usr/bin/systemctl restart momo-survey-api'
