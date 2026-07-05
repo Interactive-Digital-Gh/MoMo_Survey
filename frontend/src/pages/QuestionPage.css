@@ -172,24 +172,24 @@
 }
 
 .option--selected {
-  background: rgba(255, 203, 5, 0.28);
+  background: rgba(255, 203, 5, 0.20);
   border-color: var(--momo-yellow-dark);
-  box-shadow: 0 0 0 1.5px var(--momo-yellow-dark), 0 6px 16px rgba(191, 152, 4, 0.15);
+  box-shadow: 0 4px 12px rgba(191, 152, 4, 0.08);
 }
 
 .option--selected:hover {
-  background: rgba(255, 203, 5, 0.36);
+  background: rgba(255, 203, 5, 0.26);
 }
 
 .option--selected .option__badge {
   background: var(--momo-yellow-normal);
   color: var(--momo-blue-dark);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .option--selected .option__label {
   font-weight: 600;
-  color: var(--momo-blue-darker);
+  color: var(--momo-blue-dark);
 }
 
 .qcard__hint {
