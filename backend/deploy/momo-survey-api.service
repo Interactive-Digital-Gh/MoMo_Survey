@@ -1,0 +1,36 @@
+# systemd unit for the MoMo survey API.
+# Install to /etc/systemd/system/momo-survey-api.service, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now momo-survey-api
+#
+# Sandboxed + resource-capped so a campaign spike (or a bug) can't disturb the
+# other production apps sharing ID-Server.
+
+[Unit]
+Description=MoMo Survey Campaign API (Fastify)
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=momo
+Group=momo
+WorkingDirectory=/opt/momo-survey/backend
+EnvironmentFile=/opt/momo-survey/backend/.env
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=3
+
+# ── Resource caps (tune to the box) ──
+MemoryMax=512M
+CPUQuota=50%
+TasksMax=256
+
+# ── Hardening ──
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/momo-survey/backend
+
+[Install]
+WantedBy=multi-user.target

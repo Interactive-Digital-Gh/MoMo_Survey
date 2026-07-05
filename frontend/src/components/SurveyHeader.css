@@ -1,0 +1,65 @@
+/* ── Shared survey page shell (light background + centered mobile column) ── */
+.survey-page {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  /* Clip the wide header ellipse horizontally but allow the page to scroll
+     vertically when a question has more options than fit on screen. */
+  overflow-x: hidden;
+  background: var(--momo-blue-light);
+  color: var(--momo-blue-dark);
+}
+
+.survey-page__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+}
+
+/* ── Curved dark header (large blurred ellipse, only its bottom arc shows) ── */
+.survey-header {
+  position: absolute;
+  top: -603px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1109px;
+  height: 753px;
+  border-radius: 50%;
+  background: radial-gradient(120% 80% at 50% 92%, #0a4b64 0%, #003b55 55%);
+  border: 1px solid rgba(255, 203, 5, 0.35);
+  pointer-events: none;
+}
+
+/* ── Top bar (logo + skip) sitting on the dark header ── */
+.survey-topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top, 0px) + 46px) 24px 0;
+}
+
+.survey-logo {
+  width: 45px;
+  height: auto;
+  object-fit: contain;
+}
+
+.survey-skip {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--momo-yellow-normal);
+  padding: 2px 4px;
+}
+
+.survey-skip:hover {
+  opacity: 0.85;
+}

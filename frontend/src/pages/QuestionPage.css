@@ -1,0 +1,192 @@
+/* Page shell + header come from SurveyHeader.css (.survey-page / .survey-header). */
+
+.question__body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 24px calc(env(safe-area-inset-bottom, 0px) + 28px);
+}
+
+/* ── Progress ── */
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.progress__labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.progress__entry {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--momo-blue-normal);
+}
+
+.progress__total {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  color: var(--momo-blue-dark);
+}
+
+.progress__track {
+  position: relative;
+  height: 6px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(0, 79, 113, 0.12);
+}
+
+.progress__fill {
+  position: relative;
+  height: 6px;
+  min-width: 22px;
+  border-radius: 999px;
+  background: var(--momo-yellow-normal);
+  transition: width 0.4s ease;
+}
+
+.progress__marker {
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--momo-yellow-normal);
+  box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.25);
+}
+
+/* Stage that holds the animated card; the outgoing card is popped out of flow
+   and slides away while the next slides in (clipped by .survey-page overflow-x). */
+.qcard-stage {
+  position: relative;
+  width: 100%;
+}
+
+/* ── Question card ── */
+.qcard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 22px 24px 24px;
+  border-radius: 42px;
+  background: var(--momo-blue-light-hover);
+  border: 1px solid var(--momo-yellow-dark);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.qcard:active {
+  cursor: grabbing;
+}
+
+.qcard__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qcard__eyebrow {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  color: var(--momo-blue-dark);
+}
+
+.qcard__question {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  color: var(--momo-blue-normal);
+}
+
+/* Fact / "Did you know?" cards: the body text reads as a regular paragraph. */
+.qcard__question--fact {
+  font-weight: 400;
+}
+
+.qcard__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 74px;
+  padding: 12px 17px;
+  border-radius: 24px;
+  background: rgba(176, 200, 211, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.option:hover {
+  background: rgba(176, 200, 211, 0.55);
+}
+
+.option:active {
+  transform: scale(0.99);
+}
+
+.option__badge {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--momo-blue-normal);
+  font-size: 14px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.option__label {
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: -0.15px;
+  color: var(--momo-blue-dark);
+}
+
+.option--selected {
+  background: rgba(255, 203, 5, 0.16);
+  border-color: var(--momo-yellow-dark);
+}
+
+.option--selected .option__badge {
+  background: var(--momo-yellow-normal);
+  color: var(--momo-blue-dark);
+}
+
+.qcard__hint {
+  margin-top: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--momo-blue-normal);
+}

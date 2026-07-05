@@ -1,0 +1,89 @@
+/* Page shell + header come from SurveyHeader.css (.survey-page / .survey-header). */
+
+.phone__body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 96px 24px 24px;
+}
+
+.phone__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.phone__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--momo-blue-dark);
+}
+
+.phone__subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: -0.3px;
+  color: var(--momo-blue-normal);
+  opacity: 0.8;
+}
+
+.phone__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--momo-blue-light-hover);
+  color: var(--momo-blue-normal);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.phone__input::placeholder {
+  color: var(--momo-blue-normal);
+  opacity: 0.3;
+  text-transform: capitalize;
+}
+
+.phone__input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 79, 113, 0.35);
+}
+
+/* ── Footer button ── */
+.phone__footer {
+  position: relative;
+  z-index: 1;
+  padding: 12px 24px calc(env(safe-area-inset-bottom, 0px) + 24px);
+}
+
+.phone__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--momo-blue-dark);
+  color: var(--momo-blue-light);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.phone__cta:hover {
+  background: #004f71;
+}
+
+.phone__cta:active {
+  transform: scale(0.99);
+}

@@ -1,0 +1,55 @@
+:root {
+  /* ── MoMo brand palette (from Figma design tokens) ── */
+  --momo-blue-darker: #001c28;
+  --momo-blue-dark: #003b55;
+  --momo-blue-normal: #004f71;
+  --momo-blue-light: #e6edf1;
+  --momo-blue-light-hover: #d9e5ea;
+  --momo-blue-light-active: #b0c8d3;
+  --momo-yellow-light: #fffae6;
+  --momo-yellow-normal: #ffcb05;
+  --momo-yellow-dark: #bf9804;
+  --white: #ffffff;
+
+  --font-brand: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-brand);
+  background: var(--momo-blue-dark);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Prevent pull-to-refresh / rubber-banding jitter on mobile */
+  overscroll-behavior: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove tap highlight flash on mobile */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}

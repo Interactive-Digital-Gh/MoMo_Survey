@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1129 773" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Ellipse 1" filter="url(#filter0_f_0_11)">
+<ellipse cx="564.5" cy="386.5" rx="554.5" ry="376.5" fill="var(--fill-0, #003B55)"/>
+<path d="M564.5 10.5C717.534 10.5 856.058 52.6179 956.31 120.688C1056.56 188.759 1118.5 282.747 1118.5 386.5C1118.5 490.253 1056.56 584.241 956.31 652.312C856.058 720.382 717.534 762.5 564.5 762.5C411.466 762.5 272.942 720.382 172.69 652.312C72.4362 584.241 10.5 490.253 10.5 386.5C10.5 282.747 72.4362 188.759 172.69 120.688C272.942 52.6179 411.466 10.5 564.5 10.5Z" stroke="var(--stroke-0, #FFCB05)"/>
+</g>
+<defs>
+<filter id="filter0_f_0_11" x="0" y="0" width="1129" height="773" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_0_11"/>
+</filter>
+</defs>
+</svg>
