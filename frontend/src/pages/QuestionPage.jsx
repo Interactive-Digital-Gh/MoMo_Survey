@@ -112,10 +112,11 @@ export default function QuestionPage() {
   // the render triggered by navigation without adding an extra render.
   const direction = useRef(1)
 
-  // The component stays mounted across /question/:step changes, so clear the
-  // selection each time the step changes — the next question starts unselected.
+  // The component stays mounted across /question/:step changes — restore any
+  // previously saved answer from sessionStorage so going back shows the choice.
   useEffect(() => {
-    setSelected(null)
+    const saved = JSON.parse(sessionStorage.getItem('momo_current_answers') || '{}')
+    setSelected(saved[stepNum] || null)
   }, [stepNum])
 
   // Invalid / out-of-range step → back to the first question.
