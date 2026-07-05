@@ -1,4 +1,4 @@
-name: Deploy to ID-Server!!
+name: Deploy to ID-Server!
 
 # Builds the frontend on the runner (the box has little RAM), then deploys:
 #   - rsync the built frontend/dist to the server
