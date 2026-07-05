@@ -42,7 +42,7 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          printf '%s\n' "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
@@ -51,14 +51,14 @@ jobs:
           rsync -az --delete \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
             frontend/dist/ \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/frontend/dist/"
+            "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:/var/www/production/MoMo_Survey/frontend/dist/"
 
       - name: Update backend and restart API
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}" \
             'set -e; \
-             cd "${{ secrets.DEPLOY_PATH }}"; \
+             cd /var/www/production/MoMo_Server/backend
              git pull --ff-only; \
              cd backend && /usr/local/bin/npm ci --omit=dev; \
              sudo /usr/bin/systemctl restart momo-survey-api'
