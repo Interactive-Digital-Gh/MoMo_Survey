@@ -1,0 +1,69 @@
+name: Deploy to ID-Server
+
+# Builds the frontend on the runner (the box has little RAM), then deploys:
+#   - rsync the built frontend/dist to the server
+#   - git pull the backend source on the server + npm ci + restart the API
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   SSH_HOST     e.g. the ID-Server host/IP
+#   SSH_USER     the deploy user on the box (e.g. "deploy")
+#   SSH_KEY      the PRIVATE SSH key whose public half is in that user's authorized_keys
+#   DEPLOY_PATH  /var/www/production/MoMo_Survey
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Ship built frontend
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            frontend/dist/ \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/frontend/dist/"
+
+      - name: Update backend and restart API
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            'set -e; \
+             cd "${{ secrets.DEPLOY_PATH }}"; \
+             git pull --ff-only; \
+             cd backend && /usr/local/bin/npm ci --omit=dev; \
+             sudo /usr/bin/systemctl restart momo-survey-api'
+
+      - name: Health check
+        run: |
+          sleep 3
+          curl -fsS https://momo-survey.interactivedigital.com.gh/api/health

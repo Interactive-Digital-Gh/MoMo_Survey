@@ -14,9 +14,9 @@ Wants=postgresql.service
 Type=simple
 User=momo
 Group=momo
-WorkingDirectory=/opt/momo-survey/backend
-EnvironmentFile=/opt/momo-survey/backend/.env
-ExecStart=/usr/bin/node src/server.js
+WorkingDirectory=/var/www/production/MoMo_Survey/backend
+EnvironmentFile=/var/www/production/MoMo_Survey/backend/.env
+ExecStart=/usr/local/bin/node src/server.js
 Restart=always
 RestartSec=3
 
@@ -30,7 +30,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/momo-survey/backend
+ReadWritePaths=/var/www/production/MoMo_Survey/backend
 
 [Install]
 WantedBy=multi-user.target
