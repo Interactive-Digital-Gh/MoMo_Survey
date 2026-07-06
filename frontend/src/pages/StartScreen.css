@@ -2,7 +2,9 @@
   position: relative;
   min-height: 100dvh;
   width: 100%;
-  overflow: hidden;
+  /* Clip the card bleed at the screen edges; allow scroll on short viewports. */
+  overflow-x: hidden;
+  overflow-y: auto;
   /* Vertical MoMo-blue gradient: slightly lit at top, deeper navy at the base */
   background:
     radial-gradient(120% 60% at 50% 12%, #0a4b64 0%, #003b55 45%, #002536 100%);
@@ -26,64 +28,77 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  max-width: 430px;
+  max-width: 390px;
   margin: 0 auto;
   min-height: 100dvh;
+  /* Figma places the logo ~7% down with no OS status bar of our own; anchor the
+     stack from the top so the logo→cards→copy→button rhythm tracks the design. */
   padding:
-    calc(env(safe-area-inset-top, 0px) + 32px)
+    calc(env(safe-area-inset-top, 0px) + 44px)
     24px
-    calc(env(safe-area-inset-bottom, 0px) + 22px);
+    calc(env(safe-area-inset-bottom, 0px) + 24px);
 }
 
-/* ── Logo ── */
+/* ── Logo ── (Figma: 49×61, centered near the top) */
 .start__logo {
   width: 49px;
   height: auto;
   object-fit: contain;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
-/* ── Card stack ── */
+/* ── Card stack ──
+   Stage matches the Figma "StackedCards" box (342×354 inside the 390 frame).
+   Cards are positioned by their centre and rotated, fanning down-right with
+   increasing rotation (4.78° → 9.77° → 18°), exactly as in the design. */
 .start__cards {
   position: relative;
   width: 100%;
-  height: 340px;
+  aspect-ratio: 342 / 354;
   flex-shrink: 0;
 }
 
 .card {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(80%, 290px);
-  height: 258px;
+  width: 89.7%;         /* 306.762 / 342 */
+  aspect-ratio: 306.762 / 278.874;   /* ≈ 1.10, landscape */
   padding: 20px;
   border-radius: 24px;
   background: rgba(230, 237, 241, 0.72);
   box-shadow:
     0 10px 15px rgba(0, 0, 0, 0.1),
     0 4px 6px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 }
 
 .card--back {
-  transform: translate(-50%, -52%) rotate(5deg);
+  left: 48.6%;
+  top: 41.5%;
+  transform: translate(-50%, -50%) rotate(4.78deg);
   background: rgba(230, 237, 241, 0.5);
 }
 
 .card--mid {
-  transform: translate(-50%, -50%) rotate(10deg);
-  background: rgba(230, 237, 241, 0.6);
+  left: 50.2%;
+  top: 49%;
+  transform: translate(-50%, -50%) rotate(9.77deg);
+  background: rgba(230, 237, 241, 0.62);
 }
 
 .card--front {
-  transform: translate(-50%, -46%) rotate(17deg);
+  left: 50.8%;
+  top: 55.9%;
+  transform: translate(-50%, -50%) rotate(18deg);
   background: rgba(230, 237, 241, 0.92);
 }
 
 /* Card content */
 .card__title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   font-style: italic;
   font-weight: 500;
   font-size: 18px;
@@ -94,7 +109,7 @@
 .card__label {
   position: absolute;
   left: 20px;
-  bottom: 40px;
+  top: 46%;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -104,8 +119,8 @@
 
 .card__badge {
   position: absolute;
-  top: 18px;
-  right: 20px;
+  top: 16px;
+  left: 47%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,15 +132,23 @@
 }
 
 .card__badge--faint {
+  left: 43%;
   background: rgba(255, 255, 255, 0.5);
   box-shadow: none;
-  transform: rotate(12deg);
+}
+
+.card--back .card__badge--faint {
+  transform: rotate(15.98deg);
+}
+
+.card--mid .card__badge--faint {
+  transform: rotate(8.81deg);
 }
 
 .card__avatars {
   position: absolute;
-  left: 20px;
-  bottom: 16px;
+  left: 40%;
+  top: 44%;
   display: flex;
 }
 
@@ -139,16 +162,15 @@
   margin-left: -8px;
 }
 
-/* ── Copy ── */
+/* ── Copy ── (Figma: sits ~38px below the card stack) */
 .start__copy {
   width: 100%;
-  margin-top: auto;
+  margin-top: 38px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   text-align: left;
-  padding-top: 24px;
 }
 
 .start__title {
@@ -174,7 +196,7 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 29px;
 }
 
 .start__cta {

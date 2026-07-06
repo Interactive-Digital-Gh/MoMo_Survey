@@ -46,12 +46,10 @@ export default function PhoneNumber() {
 
   const handleProceed = () => startSurvey(phone || 'Anonymous')
 
-  const handleSkip = () => startSurvey('Anonymous')
-
   return (
     <main className="survey-page phone">
       <div className="survey-page__inner">
-        <SurveyHeader onSkip={handleSkip} />
+        <SurveyHeader />
 
         <div className="phone__body">
           <div className="phone__intro">

@@ -189,10 +189,6 @@ export default function QuestionPage() {
     setTimeout(goNext, 200)
   }
 
-  const handleSkip = () => {
-    goNext()
-  }
-
   const goBack = () => {
     direction.current = -1
     // Swipe right → previous question, or back to the phone screen from Q1.
@@ -208,7 +204,7 @@ export default function QuestionPage() {
   return (
     <main className="survey-page">
       <div className="survey-page__inner">
-        <SurveyHeader onSkip={handleSkip} />
+        <SurveyHeader />
 
         <div className="question__body">
           {/* Progress */}
