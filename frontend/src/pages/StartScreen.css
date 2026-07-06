@@ -52,13 +52,30 @@
   height: auto;
   margin-top: 26px;
   filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.35));
-  animation: emblem-in 0.5s ease both;
+  /* Pop in on load, then bob gently forever. */
+  animation:
+    emblem-in 0.5s ease both,
+    emblem-float 4.5s ease-in-out 0.6s infinite;
 }
 
 @keyframes emblem-in {
   from {
     opacity: 0;
     transform: scale(0.92);
+  }
+}
+
+/* Floating bob — the shadow lengthens and softens as the coin rises, so it
+   reads as lifting off rather than the whole thing just sliding up. */
+@keyframes emblem-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.35));
+  }
+  50% {
+    transform: translateY(-14px);
+    filter: drop-shadow(0 32px 44px rgba(0, 0, 0, 0.22));
   }
 }
 
