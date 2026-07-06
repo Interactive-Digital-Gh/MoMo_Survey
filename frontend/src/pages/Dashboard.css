@@ -344,6 +344,15 @@
   transform: scale(0.98);
 }
 
+.action-btn--excel {
+  background: var(--momo-yellow-normal);
+  color: var(--momo-blue-normal);
+}
+
+.action-btn--excel:hover {
+  background: #f2c400;
+}
+
 .action-btn--export {
   background: var(--momo-blue-normal);
   color: #ffffff;

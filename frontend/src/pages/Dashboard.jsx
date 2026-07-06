@@ -2,8 +2,18 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getToken, clearToken, fetchResponses } from '../lib/api.js'
 import { questions } from '../data/questions.js'
+import { exportRowsToXlsx } from '../lib/xlsx.js'
 import momoLogo from '../assets/momo-logo.png'
 import './Dashboard.css'
+
+// "2026-07-06 14:30" — sortable, locale-independent timestamp for the export.
+function formatDateTime(d) {
+  if (Number.isNaN(d.getTime())) return ''
+  const p = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(
+    d.getHours(),
+  )}:${p(d.getMinutes())}`
+}
 
 // Map an API row to the shape the dashboard renders (timestamp + safe phone).
 function normalizeEntry(e) {
@@ -79,6 +89,42 @@ export default function Dashboard() {
     document.body.appendChild(downloadAnchor)
     downloadAnchor.click()
     downloadAnchor.remove()
+  }
+
+  // Export the currently shown (filtered) rows as a real .xlsx. One row per
+  // response; a column per question with the human-readable answer label.
+  const handleExportExcel = () => {
+    const header = [
+      '#',
+      'Phone Number',
+      'Submission ID',
+      'Submitted',
+      'Answered',
+      ...questions.map((q) => `Q${q.id}. ${q.question}`),
+    ]
+
+    const rows = filteredEntries.map((entry, i) => {
+      const answered = Object.values(entry.answers).filter((v) => v != null).length
+      const answerCells = questions.map((q) => {
+        const opt = q.options.find((o) => o.key === entry.answers[q.id])
+        return opt ? opt.label : ''
+      })
+      return [
+        i + 1,
+        entry.phone,
+        entry.submission_id || '',
+        formatDateTime(new Date(entry.timestamp)),
+        `${answered}/${questions.length}`,
+        ...answerCells,
+      ]
+    })
+
+    const stamp = new Date().toISOString().slice(0, 10)
+    exportRowsToXlsx(
+      `momo_survey_responses_${stamp}.xlsx`,
+      'Responses',
+      [header, ...rows],
+    )
   }
 
   // Live filter entries by phone search
@@ -245,6 +291,10 @@ export default function Dashboard() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     aria-label="Search entries by phone number"
                   />
+                  <button type="button" className="action-btn action-btn--excel" onClick={handleExportExcel} title="Download responses as an Excel (.xlsx) file">
+                    <DownloadIcon />
+                    <span>Export Excel</span>
+                  </button>
                   <button type="button" className="action-btn action-btn--export" onClick={handleExportJSON} title="Download responses as JSON">
                     <DownloadIcon />
                     <span>Export JSON</span>
