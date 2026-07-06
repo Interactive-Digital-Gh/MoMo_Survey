@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useMotionValue, useTransform } from 'framer-mo
 import SurveyHeader from '../components/SurveyHeader.jsx'
 import momoMark from '../assets/momo-mark-yellow.png'
 import { submitSurvey } from '../lib/api.js'
+import { uuid } from '../lib/uuid.js'
 import { questions, TOTAL_QUESTIONS, HALFWAY_STEP } from '../data/questions.js'
 import './QuestionPage.css'
 
@@ -138,7 +139,7 @@ export default function QuestionPage() {
 
   const saveSurveyEntry = async () => {
     const submissionId =
-      sessionStorage.getItem('momo_submission_id') || crypto.randomUUID()
+      sessionStorage.getItem('momo_submission_id') || uuid()
     const phone = sessionStorage.getItem('momo_current_phone') || 'Anonymous'
     const answers = JSON.parse(
       sessionStorage.getItem('momo_current_answers') || '{}',

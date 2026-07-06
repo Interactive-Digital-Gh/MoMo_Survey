@@ -32,6 +32,12 @@
   opacity: 0.8;
 }
 
+.phone__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .phone__input {
   width: 100%;
   height: 52px;
@@ -43,6 +49,7 @@
   font-family: inherit;
   font-size: 15px;
   outline: none;
+  box-shadow: 0 0 0 0 transparent;
   transition: box-shadow 0.15s ease;
 }
 
@@ -54,6 +61,18 @@
 
 .phone__input:focus {
   box-shadow: 0 0 0 2px rgba(0, 79, 113, 0.35);
+}
+
+.phone__input--error,
+.phone__input--error:focus {
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.7);
+}
+
+.phone__error {
+  padding: 0 20px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #c0392b;
 }
 
 /* ── Footer button ── */
@@ -86,4 +105,9 @@
 
 .phone__cta:active {
   transform: scale(0.99);
+}
+
+.phone__cta:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

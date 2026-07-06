@@ -22,7 +22,7 @@ const SCHEMA = `
   CREATE INDEX IF NOT EXISTS idx_responses_created_at ON responses (created_at DESC);
 `
 
-// Optional stricter policy: one entry per (non-null) phone number.
+// One entry per (non-null) phone number — a firm campaign rule, always enforced.
 const ONE_PER_PHONE_INDEX = `
   CREATE UNIQUE INDEX IF NOT EXISTS uniq_responses_phone
   ON responses (phone) WHERE phone IS NOT NULL;
@@ -30,9 +30,7 @@ const ONE_PER_PHONE_INDEX = `
 
 export async function initSchema() {
   await pool.query(SCHEMA)
-  if (config.oneEntryPerPhone) {
-    await pool.query(ONE_PER_PHONE_INDEX)
-  }
+  await pool.query(ONE_PER_PHONE_INDEX)
 }
 
 export async function healthCheck() {

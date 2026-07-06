@@ -1,29 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import momoLogo from '../assets/momo-logo.png'
+import questionEmblem from '../assets/question-emblem.png'
 import './StartScreen.css'
-
-function QuestionIcon({ className }) {
-  return (
-    <svg
-      className={className}
-      width="16"
-      height="16"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M7.5 7.5a2.5 2.5 0 1 1 3.4 2.33c-.72.27-1.4.86-1.4 1.67v.5"
-        stroke="var(--momo-yellow-dark)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="9.5" cy="15" r="0.6" fill="var(--momo-yellow-dark)" stroke="var(--momo-yellow-dark)" strokeWidth="0.6" />
-    </svg>
-  )
-}
 
 function ArrowRight() {
   return (
@@ -53,16 +31,6 @@ function ArrowRight() {
   )
 }
 
-/* Small overlapping "avatar" dots that sit at the bottom of a card */
-function AvatarDots({ color }) {
-  return (
-    <div className="card__avatars">
-      <span className="card__dot" style={{ background: color }} />
-      <span className="card__dot" style={{ background: color }} />
-    </div>
-  )
-}
-
 export default function StartScreen() {
   const navigate = useNavigate()
 
@@ -82,33 +50,12 @@ export default function StartScreen() {
       <div className="start__content">
         <img className="start__logo" src={momoLogo} alt="MoMo, from MTN" />
 
-        {/* ── Stacked "Did you know" cards ── */}
-        <div className="start__cards" aria-hidden="true">
-          <div className="card card--back">
-            <span className="card__badge card__badge--faint">
-              <QuestionIcon />
-            </span>
-            <span className="card__label" style={{ color: '#6b8f82' }}>
-              mindful
-            </span>
-            <AvatarDots color="#c9f0e3" />
-          </div>
-
-          <div className="card card--mid">
-            <span className="card__badge card__badge--faint">
-              <QuestionIcon />
-            </span>
-          </div>
-
-          <div className="card card--front">
-            <span className="card__badge">
-              <QuestionIcon />
-            </span>
-            <p className="card__title">Did you know</p>
-            <span className="card__label">Yes or no</span>
-            <AvatarDots color="#d9e5ea" />
-          </div>
-        </div>
+        <img
+          className="start__emblem"
+          src={questionEmblem}
+          alt=""
+          aria-hidden="true"
+        />
 
         {/* ── Headline + subtext ── */}
         <div className="start__copy">

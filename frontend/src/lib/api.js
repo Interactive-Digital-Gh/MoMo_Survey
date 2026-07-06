@@ -29,6 +29,16 @@ export async function submitSurvey(entry) {
   throw new Error(`Submit failed (${res.status})`)
 }
 
+// ── Public: has this phone already entered the survey? ──
+export async function checkPhoneExists(phone) {
+  const res = await fetch(
+    `/api/responses/exists?phone=${encodeURIComponent(phone)}`,
+  )
+  if (!res.ok) throw new Error(`Check failed (${res.status})`)
+  const { exists } = await res.json()
+  return Boolean(exists)
+}
+
 // ── Admin auth ──
 export async function login(username, password) {
   const res = await fetch('/api/auth/login', {
