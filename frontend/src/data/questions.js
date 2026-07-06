@@ -4,6 +4,9 @@
 
 export const TOTAL_QUESTIONS = 10
 
+// A celebration interstitial ("Halfway there!") is shown after this entry.
+export const HALFWAY_STEP = Math.floor(TOTAL_QUESTIONS / 2)
+
 export const questions = [
   {
     id: 1,
@@ -87,13 +90,11 @@ export const questions = [
     ],
   },
   {
-    // NOTE: Figma frames 8 and 9 have identical fact text — likely a duplicate
-    // in the design. Kept as-is; update this copy once the intended text is known.
     id: 8,
     type: 'single',
     eyebrow: 'Did you know?',
     question:
-      'The MoMo App generates transaction statements for the last 30, 60, or 90 days, or a custom range within 90 days, sent as a PDF to your email.',
+      'You can use QR code payments with participating merchants through the MoMo App, making checkout quicker where supported.',
     options: [
       { key: 'A', label: 'Yes' },
       { key: 'B', label: 'No' },

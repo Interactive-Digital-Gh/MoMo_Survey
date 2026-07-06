@@ -2,8 +2,9 @@ import { useState, useEffect, useRef, forwardRef } from 'react'
 import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValue, useTransform } from 'framer-motion'
 import SurveyHeader from '../components/SurveyHeader.jsx'
+import momoMark from '../assets/momo-mark-yellow.png'
 import { submitSurvey } from '../lib/api.js'
-import { questions, TOTAL_QUESTIONS } from '../data/questions.js'
+import { questions, TOTAL_QUESTIONS, HALFWAY_STEP } from '../data/questions.js'
 import './QuestionPage.css'
 
 // Card slides away in the travel direction and the next one slides in behind it.
@@ -90,7 +91,18 @@ const QuestionCard = forwardRef(({
             }`}
             onClick={() => handleSelect(opt.key)}
           >
-            <span className="option__badge">{opt.key}</span>
+            <span className="option__badge">
+              {selected === opt.key ? (
+                <img
+                  className="option__badge-mark"
+                  src={momoMark}
+                  alt=""
+                  aria-hidden="true"
+                />
+              ) : (
+                opt.key
+              )}
+            </span>
             <span className="option__label">{opt.label}</span>
           </button>
         ))}
@@ -153,7 +165,10 @@ export default function QuestionPage() {
 
   const goNext = () => {
     direction.current = 1
-    if (questions[stepNum]) {
+    if (stepNum === HALFWAY_STEP) {
+      // Celebration interstitial midway through, then on to the next question.
+      navigate('/halfway')
+    } else if (questions[stepNum]) {
       navigate(`/question/${stepNum + 1}`)
     } else {
       // Last question answered — compile entry and go to thank you screen

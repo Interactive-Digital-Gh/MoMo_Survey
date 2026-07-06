@@ -172,24 +172,37 @@
 }
 
 .option--selected {
-  background: rgba(255, 203, 5, 0.20);
-  border-color: var(--momo-yellow-dark);
-  box-shadow: 0 4px 12px rgba(191, 152, 4, 0.08);
+  background: linear-gradient(
+    170.8deg,
+    rgba(255, 255, 255, 0.7) 54%,
+    rgba(255, 203, 5, 0.05) 192%
+  );
+  border-color: #e6b705;
+  box-shadow: 0 0 10px rgba(191, 152, 4, 0.2);
 }
 
 .option--selected:hover {
-  background: rgba(255, 203, 5, 0.26);
+  background: linear-gradient(
+    170.8deg,
+    rgba(255, 255, 255, 0.82) 54%,
+    rgba(255, 203, 5, 0.08) 192%
+  );
 }
 
 .option--selected .option__badge {
-  background: var(--momo-yellow-normal);
-  color: var(--momo-blue-dark);
-  font-weight: 600;
+  background: var(--momo-yellow-light);
+  border: 1px solid #e6b705;
+}
+
+.option__badge-mark {
+  width: 20px;
+  height: auto;
+  display: block;
 }
 
 .option--selected .option__label {
-  font-weight: 600;
-  color: var(--momo-blue-dark);
+  font-weight: 500;
+  color: var(--momo-yellow-dark);
 }
 
 .qcard__hint {
