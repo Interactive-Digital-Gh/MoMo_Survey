@@ -116,6 +116,43 @@
   background: #ffffff;
 }
 
+/* Password field with an inline show/hide toggle */
+.login-card__password {
+  position: relative;
+}
+
+.login-card__password input {
+  padding-right: 48px;
+}
+
+.login-card__reveal {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  color: var(--momo-blue-normal);
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+
+.login-card__reveal:hover {
+  opacity: 1;
+  background: rgba(0, 79, 113, 0.08);
+}
+
+.login-card__reveal:active {
+  color: var(--momo-yellow-dark);
+}
+
 .login-card__submit {
   display: flex;
   align-items: center;
