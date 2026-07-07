@@ -21,47 +21,6 @@
   animation: halfway-fade 0.6s ease both;
 }
 
-/* Falling confetti particles layered over the static spray (top area only) */
-.halfway__confetti-fall {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 52vh;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.confetti-piece {
-  position: absolute;
-  top: 0;
-  display: block;
-  opacity: 0;
-  will-change: transform, opacity;
-  transform: translate3d(0, -20px, 0) rotate(var(--r0));
-  animation-name: confetti-fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes confetti-fall {
-  0% {
-    transform: translate3d(0, -20px, 0) rotate(var(--r0));
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(var(--dx), var(--dist), 0) rotate(var(--r1));
-    opacity: 0;
-  }
-}
-
 /* Soft halo behind the medal */
 .halfway__glow {
   position: absolute;
@@ -82,17 +41,37 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
   min-height: 100dvh;
   padding:
-    calc(env(safe-area-inset-top, 0px) + 32px)
+    calc(env(safe-area-inset-top, 0px) + 22px)
     24px
     calc(env(safe-area-inset-bottom, 0px) + 22px);
 }
 
-/* ── Centered medal + message ── */
+/* Small MoMo app-icon at the top (icon cropped from the stacked logo, per Figma) */
+.halfway__logo {
+  position: relative;
+  width: 46px;
+  height: 50px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.halfway__logo img {
+  position: absolute;
+  top: 0;
+  left: -25.2%;
+  width: 141.51%;
+  height: 160.53%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* ── Centered emblem + message ── */
 .halfway__center {
   flex: 1;
   display: flex;
@@ -100,34 +79,20 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  width: 100%;
 }
 
-.halfway__medal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(206px, 52vw);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    #4d849c 0%,
-    rgba(0, 79, 113, 0.95) 53%,
-    rgba(0, 54, 84, 0.97) 100%
-  );
-  animation: halfway-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.halfway__medal-icon {
-  width: 48%;
+.halfway__emblem {
+  width: min(300px, 74vw);
   height: auto;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.3));
+  animation: halfway-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .halfway__copy {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   width: 100%;
 }
@@ -138,7 +103,8 @@
   font-size: 28px;
   line-height: 1.14;
   letter-spacing: -0.5px;
-  color: var(--white);
+  text-align: center;
+  color: var(--momo-yellow-normal);
 }
 
 .halfway__subtitle {
@@ -146,6 +112,7 @@
   font-size: 14px;
   line-height: 1.43;
   letter-spacing: -0.3px;
+  text-align: center;
   color: var(--momo-blue-light-active);
 }
 
@@ -174,16 +141,16 @@
   animation: halfway-fill 0.7s ease both 0.15s;
 }
 
+/* MoMo mark riding the head of the progress fill */
 .halfway__progress-knob {
   position: absolute;
-  right: -3px;
+  right: -11px;
   top: 50%;
   transform: translateY(-50%);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--momo-yellow-normal);
-  box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.25);
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.28));
 }
 
 .halfway__progress-label {
@@ -202,7 +169,7 @@
   width: 100%;
   height: 56px;
   border-radius: 999px;
-  background: var(--momo-blue-light);
+  background: var(--momo-yellow-normal);
   color: var(--momo-blue-normal);
   font-size: 15px;
   font-weight: 500;
@@ -212,11 +179,11 @@
 }
 
 .halfway__cta:hover {
-  background: var(--momo-blue-light-hover);
+  background: #f2c400;
 }
 
 .halfway__cta:active {
-  background: var(--momo-blue-light-active);
+  background: #e6b705;
   transform: scale(0.99);
 }
 
@@ -248,11 +215,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .halfway__confetti,
-  .halfway__medal,
+  .halfway__emblem,
   .halfway__progress-fill {
     animation: none;
-  }
-  .halfway__confetti-fall {
-    display: none;
   }
 }

@@ -219,7 +219,12 @@ export default function QuestionPage() {
                 className="progress__fill"
                 style={{ width: `${progressPct}%` }}
               >
-                <span className="progress__marker" />
+                <img
+                  className="progress__marker"
+                  src={momoMark}
+                  alt=""
+                  aria-hidden="true"
+                />
               </div>
             </div>
           </div>

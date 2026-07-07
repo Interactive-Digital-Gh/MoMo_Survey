@@ -7,7 +7,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px 24px calc(env(safe-area-inset-bottom, 0px) + 28px);
+  /* Top padding clears the curved header so the progress row sits on the light
+     background (keeps "10 Total" readable, not over the dark arc). */
+  padding: 60px 24px calc(env(safe-area-inset-bottom, 0px) + 28px);
 }
 
 /* ── Progress ── */
@@ -58,16 +60,16 @@
   transition: width 0.4s ease;
 }
 
+/* MoMo mark riding the head of the progress fill */
 .progress__marker {
   position: absolute;
-  right: -3px;
+  right: -11px;
   top: 50%;
   transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--momo-yellow-normal);
-  box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.25);
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
 }
 
 /* Stage that holds the animated card; the outgoing card is popped out of flow

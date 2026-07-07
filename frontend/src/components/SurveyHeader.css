@@ -41,12 +41,25 @@
   z-index: 2;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
-  padding: calc(env(safe-area-inset-top, 0px) + 46px) 24px 0;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 44px) 24px 0;
 }
 
+/* MoMo app-icon cropped from the stacked logo (same Figma crop as the halfway
+   screen): shows just the rounded-square icon, not the "from MTN" wordmark. */
 .survey-logo {
-  width: 45px;
-  height: auto;
-  object-fit: contain;
+  position: relative;
+  width: 46px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.survey-logo img {
+  position: absolute;
+  top: 0;
+  left: -25.2%;
+  width: 141.51%;
+  height: 160.53%;
+  max-width: none;
+  object-fit: cover;
 }

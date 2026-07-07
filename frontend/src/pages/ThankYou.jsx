@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import momoLogo from '../assets/momo-logo.png'
+import confetti from '../assets/thankyou-confetti.svg'
+import FallingConfetti from '../components/FallingConfetti.jsx'
 import './ThankYou.css'
 
 function ArrowRight() {
@@ -44,6 +46,8 @@ export default function ThankYou() {
 
   return (
     <main className="thankyou">
+      <img className="thankyou__confetti" src={confetti} alt="" aria-hidden="true" />
+      <FallingConfetti />
       <div className="thankyou__glow" aria-hidden="true" />
 
       <div className="thankyou__inner">
