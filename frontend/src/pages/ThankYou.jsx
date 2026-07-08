@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import momoLogo from '../assets/momo-logo.png'
 import confetti from '../assets/thankyou-confetti.svg'
 import FallingConfetti from '../components/FallingConfetti.jsx'
@@ -33,10 +32,9 @@ function ArrowRight() {
 }
 
 export default function ThankYou() {
-  const navigate = useNavigate()
-
-  const handleRestart = () => {
-    navigate('/')
+  const handleClaim = () => {
+    // Reward-claim flow to be defined later.
+    console.log('Claim my reward')
   }
 
   const handleDecline = () => {
@@ -56,18 +54,20 @@ export default function ThankYou() {
 
           <div className="thankyou__copy">
             <h1 className="thankyou__title">
-              Thank You for Sharing Your MoMo Experience!
+              Boom!
+              <br />
+              You actually did it!
             </h1>
             <p className="thankyou__subtitle">
-              Thanks for sharing why you prefer USSD or the MoMo App! We
-              appreciate your feedback and wish you luck winning MoMo gifts!
+              Your effort just paid off in a big way; you&rsquo;ve officially
+              won! You will be rewarded shortly.
             </p>
           </div>
         </div>
 
         <div className="thankyou__actions">
-          <button type="button" className="thankyou__cta" onClick={handleRestart}>
-            <span>Take The Survey Again</span>
+          <button type="button" className="thankyou__cta" onClick={handleClaim}>
+            <span>Claim My Reward</span>
             <ArrowRight />
           </button>
           <button
