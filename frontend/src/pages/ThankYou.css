@@ -73,9 +73,9 @@
 }
 
 .thankyou__title {
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.14;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 32px;
   letter-spacing: -0.5px;
   color: var(--momo-yellow-normal);
 }
@@ -86,51 +86,4 @@
   line-height: 1.43;
   letter-spacing: -0.3px;
   color: var(--momo-blue-light-active);
-}
-
-/* ── Actions ── */
-.thankyou__actions {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.thankyou__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  height: 56px;
-  border-radius: 999px;
-  background: var(--momo-yellow-normal);
-  color: var(--momo-blue-normal);
-  font-size: 15px;
-  font-weight: 500;
-  text-transform: capitalize;
-  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.thankyou__cta:hover {
-  background: #f2c400;
-}
-
-.thankyou__cta:active {
-  background: #e6b705;
-  transform: scale(0.99);
-}
-
-.thankyou__decline {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  color: var(--momo-blue-light-active);
-  padding: 4px 8px;
-}
-
-.thankyou__decline:hover {
-  color: var(--momo-blue-light);
 }

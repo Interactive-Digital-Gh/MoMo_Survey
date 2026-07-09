@@ -4,11 +4,6 @@ import FallingConfetti from '../components/FallingConfetti.jsx'
 import './ThankYou.css'
 
 export default function ThankYou() {
-  const handleDecline = () => {
-    // Exit flow (to be defined later).
-    console.log('Not interested')
-  }
-
   return (
     <main className="thankyou">
       <img className="thankyou__confetti" src={confetti} alt="" aria-hidden="true" />
@@ -30,16 +25,6 @@ export default function ThankYou() {
               won! You will be rewarded shortly.
             </p>
           </div>
-        </div>
-
-        <div className="thankyou__actions">
-          <button
-            type="button"
-            className="thankyou__decline"
-            onClick={handleDecline}
-          >
-            Not Interested
-          </button>
         </div>
       </div>
     </main>
