@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import momoLogo from '../assets/momo-logo.png'
 import questionEmblem from '../assets/question-emblem.png'
+import { preloadSurveyImages } from '../lib/preloadAssets.js'
 import './StartScreen.css'
 
 function ArrowRight() {
@@ -33,6 +35,12 @@ function ArrowRight() {
 
 export default function StartScreen() {
   const navigate = useNavigate()
+
+  // Warm every downstream image while the user is on the landing page so the
+  // rest of the flow renders instantly with no first-paint lag.
+  useEffect(() => {
+    preloadSurveyImages()
+  }, [])
 
   const handleStart = () => {
     navigate('/phone')
