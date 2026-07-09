@@ -3,40 +3,7 @@ import confetti from '../assets/thankyou-confetti.svg'
 import FallingConfetti from '../components/FallingConfetti.jsx'
 import './ThankYou.css'
 
-function ArrowRight() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M3.75 9H14.25"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9 3.75 14.25 9 9 14.25"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 export default function ThankYou() {
-  const handleClaim = () => {
-    // Reward-claim flow to be defined later.
-    console.log('Claim my reward')
-  }
-
   const handleDecline = () => {
     // Exit flow (to be defined later).
     console.log('Not interested')
@@ -66,10 +33,6 @@ export default function ThankYou() {
         </div>
 
         <div className="thankyou__actions">
-          <button type="button" className="thankyou__cta" onClick={handleClaim}>
-            <span>Claim My Reward</span>
-            <ArrowRight />
-          </button>
           <button
             type="button"
             className="thankyou__decline"
